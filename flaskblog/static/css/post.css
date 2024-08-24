@@ -133,3 +133,10 @@ input {
   }
 }
 
+
+/* MOBILE DEVICES */
+@media screen and (max-width: 565px) {
+  body {
+    background: red;
+  }
+} 
