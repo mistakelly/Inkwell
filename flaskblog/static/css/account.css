@@ -10,6 +10,7 @@ header {
   /* height: calc(100vh - 8vh); */
   /* background: #ccc; */
   flex: 1;
+  /* margin-bottom: 1rem; */
 }
 
 /* Section containing the profile information */
@@ -89,8 +90,13 @@ input {
   border: none;
   font-size: 1.4rem;
   background: rgb(0, 123, 255);
-  width: 25%;
-  padding: 1.3rem 1.3rem;
+  background: green;
+  color: white;
+  /* width: 25%; */
+  width: 175px;
+  /* align-self: flex-start; */
+  
+  padding: 1.3rem 3rem;
   border-radius: 5px;
   margin-top: 2rem;
   cursor: pointer;
@@ -122,13 +128,27 @@ input {
 }
 
 @media screen and (max-width: 565px) {
-
   .profile-section {
-    width:90%;
+    width: 90%;
   }
 
-
   .profile-info {
-  gap: 2rem;
+    gap: 2rem;
+  }
 }
+
+@media screen and (max-height: 568px) {
+  body {
+    background: red;
+  }
+
+  .profile-section {
+    margin: 1rem 0;
+    /* margin-bottom: 2rem; */
+  }
+
+  .update-btn {
+    width: 120px;
+  }
 }
+
