@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.mobile-handburger {
+  display: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  min-height: 100vh;
+  /* background: blue; */
+}
+
+header {
+  /* background: rgb(83, 107, 125); */
+  /* height: 8vh; */
+  /* width: 100vw; */
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid black;
+}
+
+.base-nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  padding: 2rem 0;
+  width: 80%;
+  /* height: 100%; */
+  align-items: center;
+  color: #ccc;
+  /* background: green; */
+}
+
+.base-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.base-nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.menu-list a{
+    font-size: 2rem;
+}
+
+.footer {
+  background: green;
+  padding: 1.5rem 0;
+}
+
+/* flask success flash message styles */
+.success {
+  background-color: rgb(193, 231, 194);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  font-size: 1.5rem;
+  padding: 0 1.4rem 0 1.4rem;
+  height: 6vh;
+  font-weight: 400;
+  letter-spacing: 0.3rem;
+}
+
+.success-flash-btn {
+  background: none;
+  text-decoration: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.success-flash-btn:hover {
+  cursor: pointer;
+}
+
+/* flask error flash message styles */
+.error {
+  height: 6vh;
+  font-size: 1.5rem;
+  background-color: rgb(251, 181, 181);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem 0 1rem;
+  width: 40%;
+  margin: 0 auto;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.error-flash-btn {
+  background: none;
+  text-decoration: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.info {
+  background-color: #cdecf0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  font-size: 1.5rem;
+  padding: 0 1.4rem 0 1.4rem;
+  height: 6vh;
+  font-weight: 400;
+  letter-spacing: 0.3rem;
+}
+
+.info-flash-btn {
+  background: none;
+  text-decoration: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.info-flash-btn:hover {
+  cursor: pointer;
+}
+
+/* media queries */
+
+@media screen and (max-width: 950px) {
+  .base-nav {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 565px) {
+  .menu-list li:nth-child(2) {
+    display: none;
+  }
+
+  .user-action li {
+    display: none;
+  }
+
+  .mobile-handburger {
+    display: block;
+    font-size: 28px;
+  }
+}
