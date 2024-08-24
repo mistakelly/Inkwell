@@ -116,3 +116,20 @@ input {
 .footer {
   background: green;
 }
+
+/* MEDIA QUERY */
+
+/* TABLET DEVICES */
+@media screen and (max-width: 835px) {
+
+  .post-article, .post-container{
+    width: 100%;
+    background: yellow;
+  }
+  .form {
+    width: 100%;
+    /* min-width: 700px; */
+
+  }
+}
+
