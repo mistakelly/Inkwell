@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/post.css') }}"
+    />
+  </head>
+  <body>
+    <section class="post-section">
+      <header class="post-header">
+        <nav class="nav">
+          <ul class="nav__left">
+            <!-- <li>
+              <a href="{{ url_for('main.index_page') }}">
+                <i class="fas fa-blog"></i> Simple Blog
+              </a>
+            </li> -->
+            <li>
+              <a href="{{ url_for('main.index_page') }}">
+                Simple Blog <i class="fas fa-blog"></i>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="nav__right">
+            <li class="publish">Publish</li>
+            <li>
+              <a href="{{ url_for('users.account_page') }}">
+                <i class="fas fa-user"></i> Account
+              </a>
+            </li>
+
+            <li>
+              <a href="{{ url_for('users.logout') }}">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </li>
+
+            <!-- hand burger -->
+            <div class="mobile-handburger">
+              <i class="fas fa-bars"></i>
+            </div>
+          </ul>
+        </nav>
+      </header>
+      <!-- post section -->
+      <div class="post-container">
+        <form action="/post/new" method="post" class="post-article" novalidate>
+          {{ form.hidden_tag() }}
+
+          <div class="form">
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Title"
+              class="title-input"
+            />
+            <textarea
+              id="body"
+              name="body"
+              placeholder="Tell your story..."
+              class="body-textarea"
+            ></textarea>
+          </div>
+
+          <!-- <h2>New Post</h2> -->
+          <!-- <div class="form-title">
+            {{ form.title.label }} {% if form.title.errors %} {{
+            form.title(id='input-border-error') }} {% for error in
+            form.title.errors %}
+            <p class="form-error-message">{{ error }}</p>
+            {% endfor %} {% else %} {{ form.title() }} {% endif %}
+          </div> -->
+
+          <!-- <div class="form-content">
+            {{ form.content.label }} {% if form.content.errors %} {{
+            form.content(id='input-border-error') }} {% for error in
+            form.content.errors %}
+            <p class="form-error-message">{{ error }}</p>
+            {% endfor %} {% else %} {{ form.content() }} {% endif %}
+          </div> -->
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
