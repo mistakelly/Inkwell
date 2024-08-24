@@ -3,26 +3,31 @@ header {
   margin-bottom: 0;
 }
 
+/* remove the account buttton, cause we already in the account page. */
+.user-action li:nth-child(2) {
+  display: none;
+}
+
 .account-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: red;
-  /* height: calc(100vh - 8vh); */
   flex: 1;
+  border-bottom: 1.8px solid black;
 }
-
 
 /* Section containing the profile information */
 .profile-section {
   width: 50%;
-  min-width: 560px;
-  padding: 1rem;
+  min-width: 700px;
+  padding: 4rem 0 4rem 2rem;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .account-info {
+  font-family: "Times New Roman", Times, serif;
+
   border-bottom: 1.8px solid black;
   font-size: 3rem;
   margin-bottom: 4rem;
@@ -51,6 +56,7 @@ header {
 /* Div containing the username and email */
 .profile-text h2 {
   /* margin: 3rem 0 0 -8rem; */
+  font-family: "Times New Roman", Times, serif;
   font-size: 2rem;
 }
 
@@ -87,7 +93,6 @@ input {
 .update-btn {
   border: none;
   font-size: 1.4rem;
-  background: rgb(0, 123, 255);
   background: green;
   color: white;
   /* width: 25%; */
@@ -125,7 +130,16 @@ input {
   cursor: pointer;
 }
 
-/* Mobile devices */
+/* TABLET DEVICES */
+@media screen and (max-width: 720px) {
+  .profile-section {
+    width: 80%;
+    min-width: 500px;
+  }
+}
+
+
+/* MOBILE DEVICES */
 @media screen and (max-width: 565px) {
   .profile-section {
     min-width: 0px;
@@ -142,10 +156,3 @@ input {
     width: 120px;
   }
 }
-/* 
-@media screen and (max-width: px) {
-
-  body {
-    background: red;
-  }
-} */
