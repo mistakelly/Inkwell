@@ -4,23 +4,21 @@ header {
 }
 
 .account-section {
-  width: 100vw;
   display: flex;
   justify-content: center;
+  align-items: center;
+  background: red;
   /* height: calc(100vh - 8vh); */
-  /* background: #ccc; */
   flex: 1;
-  /* margin-bottom: 1rem; */
 }
+
 
 /* Section containing the profile information */
 .profile-section {
   width: 50%;
-  /* border: 1px solid #ccc; */
+  min-width: 560px;
   padding: 1rem;
-  align-self: flex-start;
   background-color: white;
-  margin-top: 5rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -95,7 +93,7 @@ input {
   /* width: 25%; */
   width: 175px;
   /* align-self: flex-start; */
-  
+
   padding: 1.3rem 3rem;
   border-radius: 5px;
   margin-top: 2rem;
@@ -127,8 +125,10 @@ input {
   cursor: pointer;
 }
 
+/* Mobile devices */
 @media screen and (max-width: 565px) {
   .profile-section {
+    min-width: 0px;
     width: 90%;
   }
 
@@ -138,17 +138,14 @@ input {
 }
 
 @media screen and (max-height: 568px) {
-  body {
-    background: red;
-  }
-
-  .profile-section {
-    margin: 1rem 0;
-    /* margin-bottom: 2rem; */
-  }
-
   .update-btn {
     width: 120px;
   }
 }
+/* 
+@media screen and (max-width: px) {
 
+  body {
+    background: red;
+  }
+} */
