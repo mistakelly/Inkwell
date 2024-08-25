@@ -1,12 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('footer.css');
+@import url('reset.css');
 
-html {
-  font-size: 62.5%;
-}
+
 
 .mobile-handburger {
   display: none;
@@ -59,13 +54,16 @@ header {
   font-size: 1.5rem;
 }
 
-.menu-list a{
-    font-size: 2rem;
+.menu-list u li{
+  font-size: 4rem;
 }
 
-.footer {
-  background: green;
-  padding: 1.5rem 0;
+.menu-list a {
+  font-size: 2rem;
+}
+
+.footer-content p{
+  font-size: 1.3rem;
 }
 
 /* flask success flash message styles */
