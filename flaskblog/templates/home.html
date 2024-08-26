@@ -18,7 +18,10 @@
 
 <!-- prettier-ignore -->
 {% block content %}
-
+ <div class="feedback feedback--success">
+      <i class="fas fa-check-circle"></i>
+      <span>ewfewfeawfea</span>
+    </div>
 <section class="home-section">
   <div class="home-container">
     <article class="home-article">
@@ -97,4 +100,5 @@
     </aside>
   </div>
 </section>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 {% endblock %}
