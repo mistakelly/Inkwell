@@ -1,4 +1,5 @@
-@import url(./reset.css);
+@import url("reset.css");
+@import url("footer.css");
 
 body {
   display: flex;
@@ -28,6 +29,8 @@ body {
   margin: 0 auto;
 }
 
+
+
 .publish {
   background: green;
   font-size: 1.3rem;
@@ -35,6 +38,7 @@ body {
   border-radius: 10px;
   color: white;
   cursor: pointer;
+  border: none;
 }
 
 .nav__right {
@@ -138,10 +142,8 @@ input {
   }
 }
 
-@media screen and (min-height: 900px){
-
-.body-textarea{
-  min-height: 500px;
-}
-  
+@media screen and (min-height: 900px) {
+  .body-textarea {
+    min-height: 500px;
+  }
 }

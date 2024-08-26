@@ -23,6 +23,8 @@ header {
   padding: 4rem 0 4rem 2rem;
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
 }
 
 .account-info {
@@ -37,15 +39,17 @@ header {
 /* Div containing the profile picture and text */
 .profile-info {
   display: flex;
-  /* background: blue; */
   margin-bottom: 3rem;
   align-items: center;
-  gap: 4rem;
+  gap: 1rem;
 }
 
 .profile-picture {
-  width: 100px;
-  /* background: green; */
+  width: 150px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* margin-left: -50px; */;
 }
 
 .profile-picture img {
@@ -54,6 +58,10 @@ header {
 }
 
 /* Div containing the username and email */
+.profile-text{
+  /* background: yellow; */
+  margin-bottom: 2rem;
+}
 .profile-text h2 {
   /* margin: 3rem 0 0 -8rem; */
   font-family: "Times New Roman", Times, serif;
