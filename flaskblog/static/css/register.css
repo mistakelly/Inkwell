@@ -39,6 +39,28 @@ body.modal-active::before{
   animation: spin 1s linear infinite;
   z-index: 1000000000;
 }
+/* Additional styles for the signup page */
+.signup-link {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.signup-link span {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.signup-link .signup-button {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.signup-link .signup-button:hover {
+  text-decoration: underline;
+}
+
 
 /* Spinner animation */
 @keyframes spin {

@@ -6,6 +6,27 @@
   box-sizing: border-box;
 }
 
+
+
+.footer p {
+    margin: 0;
+    font-size: .8rem;
+}
+
+.social-links {
+    margin-top: 0.5rem;
+}
+
+.social-link {
+    display: inline-block;
+    margin: 0 1rem;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+
+
 /* .feedback {
   background: green;
   padding: 1.5rem 0;
@@ -67,10 +88,18 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
+
+}
+
+.nav__left li a, .nav__right li a  {
+  color: #635e5e;
+
 }
 
 .nav__left li {
   font-size: 1.3rem;
+  color: #635e5e;
+
 }
 
 .nav__right {
@@ -103,6 +132,8 @@ h2 {
   text-align: center;
   margin-bottom: 1.5rem;
   color: #333;
+  color: #635e5e;
+
 }
 
 .input-group {
@@ -149,6 +180,45 @@ input:-webkit-autofill {
 .login-button:hover {
   background-color: #0056b3;
 }
+
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.signup-link span {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.signup-link .signup-button {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.signup-link .signup-button:hover {
+  text-decoration: underline;
+}
+
+
 
 @media screen and (max-width: 565px) {
   .nav {
