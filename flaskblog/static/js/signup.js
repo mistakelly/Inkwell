@@ -10,6 +10,7 @@ const usernameInput = document.getElementById("username-input");
 const passwordInput = document.getElementById("password-input");
 const form = document.querySelector(".form");
 const feedback = document.querySelector(".feedback--success");
+
 const spinner = document.querySelector(".spinner-container");
 const submitBtn = document.querySelector(".signup-btn");
 
@@ -26,7 +27,7 @@ const clearFormInput = function () {
 };
 
 // VALIDATE USERNAME FUNCTION.
-const validateUsername = function () {
+const validateUsername = function (e) {
   const usernameRegex = /^[a-z][a-z0-9]{0,9}$/;
   const usernameLabel = document.querySelector(".username-label");
 
@@ -52,7 +53,7 @@ const validateUsername = function () {
 };
 
 // VALIDATE EMAIL FUNCTION.
-const validateEmail = function () {
+const validateEmail = function (e) {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const emailLabel = document.querySelector(".email-label");
 
@@ -105,6 +106,7 @@ const registerUser = function (e) {
     })
       .then((response) => response.json())
       .then((result) => {
+       
         // Hide the spinner
         body.classList.remove("modal-active");
         spinner.style.display = "none";
@@ -147,3 +149,4 @@ if (form) form.addEventListener("submit", registerUser);
 // Call the validation functions to set up the input event listeners
 if (emailInput) emailInput.addEventListener("input", validateEmail);
 if (usernameInput) usernameInput.addEventListener("input", validateUsername);
+
