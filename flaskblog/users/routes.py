@@ -71,8 +71,8 @@ def register_page():
 @users.route("/login", strict_slashes=False, methods=["GET", "POST"])
 def login_page():
     print('login paguihiuhe')
-    # if current_user.is_authenticated:
-    #     return redirect(url_for("main.index_page"))
+    if current_user.is_authenticated:
+        return redirect(url_for("main.index_page"))
     """
     Get users email from form email field
     Check if  email exists in database
@@ -130,6 +130,7 @@ def account_page():
             current_user.image_file = random_filename
         try:
             db.session.commit()
+            flash('Your account was successfully Updated', 'success')
         except Exception as e:
             db.session.rollback()
             flash(f"An error occured {e}")
@@ -148,64 +149,63 @@ def logout():
 
 
 # Send TOTP for reseting email.
-@users.route("/password/reset/", methods=["GET", "POST"])
+@users.route("/reset-password", methods=["GET", "POST"])
 def send_email_link():
     form = Reset_Request_Form()
     if request.method == "POST":
-        if form.validate_on_submit():
-            user = db.session.query(User).filter_by(email=form.email.data).first()
+            print('useremail', request.get_json().get('email'))
+            user = db.session.query(User).filter_by(email=request.get_json().get('email')).first()
             print(user)
             if user:
-                # try:
+
+                # call the send maiil function
                 send_email(user)
 
                 flash(
                     "Email sent successfully!, follow link to reset your password",
                     category="success",
                 )
-                # except Exception as e:
-                # flash(f"Failed to send email: {e}", category="error")
-
-                return redirect(url_for("users.send_email_link"))
+               
+                return jsonify({'status': 'success', 'message':"Email sent successfully!, follow link to reset your password"}), 200
             else:
-                flash("Email does not exist in our system", category="error")
+                return jsonify({'status': 'failure', 'message':"Email does not exist in our system"}), 400
 
-    return render_template("reset_email.html", form=form)
+    return render_template("reset_email.html")
 
 
 # Password Reset
-@users.route("/password/reset/<token>", methods=["GET", "POST"])
+@users.route("/reset-password/<string:token>", methods=["GET", "POST"])
 def reset_password(token):
-    form = Reset_Password()
     user = User.validate_token(token, expire_sec=300)
 
-    if request.method == "POST" and form.validate_on_submit():
+    print('inside the reset password link')
+
+    if request.method == "POST":
+        print('inside post reset password, naa me dee for here')
         # user variable would be None if the time set on the link expires.
         if user is None:
-            flash(
-                "Error: The provided token is either invalid or has expired",
-                category="error",
-            )
-            return redirect(url_for("users.send_email_link"))
+            return jsonify(
+                {
+                    'status': 'error',
+                    'message': 'The reset link is either invalid or has expired. Please request a new password reset.',
+                    'redirect_url': url_for("users.send_email_link")
+                }
+            ), 400
 
         #  hash user password
-        user.password = bcrypt.generate_password_hash(form.password.data).decode(
+        user.password = bcrypt.generate_password_hash(request.get_json().get('password')).decode(
             "utf-8"
         )
 
+        # # update user password.
         db.session.commit()
-        flash(
-            "Your password has been successfully reset. You can now log in with your new password.",
-            category="success",
-        )
-
-        # redirect user to login page
-        return redirect(url_for("users.login_page"))
+        return jsonify(
+            {
+                'status': 'success',
+                'message': 'Your password has been successfully reset. You can now log in with your new password. redirecting....',
+                'redirect_url': url_for("users.login_page")
+            }
+        ), 200
 
     # render reset password template on GET REQUEST.
-    return render_template(
-        "reset_password.html",
-        form=form,
-        legend_title="Reset your password",
-        title="Password reset",
-    )
+    return render_template("reset_password.html")
