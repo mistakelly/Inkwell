@@ -1,56 +1,89 @@
-{% extends 'base.html' %}
-<!-- prettier-ignore -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-{% block title %}
-    Email confirmation
-{% endblock %}
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/reset_email.css') }}"
+    />
 
+    <!-- font awsome icon -->
 
-{% block style %}
-<!-- prettier-ignore -->
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/style.css') }}"
-/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+    />
 
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/register.css') }}"
-/>
+    <!-- title -->
+    <title>INKWELL-reset password</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="base-nav">
+        <ul class="menu-list">
+          <li>
+            <a href="{{ url_for('main.index_page') }}">
+              INKWELL <i class="fas fa-book"></i>
+            </a>
+          </li>
+        </ul>
 
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/reset_password.css') }}"
-/>
-{% endblock %}
+        <ul class="user-action hide-dropdown">
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="{{ url_for('posts.create_post') }}">
+              <i class="fas fa-pencil-alt"></i> New Post
+            </a>
+          </li>
 
-<!-- prettier-ignore -->
-{% block content %}
-
-<!-- prettier-ignore -->
-<section class="register-section">
-    
-  <form action="{{ url_for ('users.send_email_link') }}" method="POST", class="register-form-container", novalidate>
-      <h2>Enter your email</h2>
-      {{ form.hidden_tag() }}
-      <div class="register-form-content">
-        <div>
-          {{ form.email.label }}
-          {% if form.email.errors %}
-            {{ form.email(id="input-border-error") }}
-            {% for error in form.email.errors %}
-              <p class="form-error-message">{{ error }}</p>
-            {% endfor %}
+          <li>
+            <a href="{{ url_for('users.account_page') }}">
+              <i class="fas fa-user"></i> Profile
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('users.logout') }}">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </li>
           {% else %}
-            {{ form.email() }}
+          <li>
+            <a href="{{ url_for('users.login_page') }}">
+              <i class="fas fa-sign-in-alt"></i> Sign in
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('users.register_page') }}">
+              <i class="fas fa-user-plus"></i> Sign up
+            </a>
+          </li>
+
           {% endif %}
-        </div>
-            <div>
-                {{ form.reset_email_link(class='reset-btn') }}
-            </div>
+        </ul>
+      </nav>
+      <div class="spinner-container">
+        <div class="spinner"></div>
       </div>
-    </form>
-    
-</section>
-{% endblock %}
-<!-- passwords?q=kud1 -->
+    </header>
+
+    <div class="feedback feedback--success">
+      <i class="fas fa-check-circle"></i>
+      <span>hellow</span>
+    </div>
+    <section class="reset-section">
+      <h2 class="email-label">Enter your email</h2>
+      <form class="reset-form" novalidate>
+        <div class="reset-container">
+          <input type="text" id="email" />
+          <button>send</button>
+        </div>
+      </form>
+
+      <script src="{{ url_for('static', filename='js/reset_email.js') }}"></script>
+    </section>
+  </body>
+</html>

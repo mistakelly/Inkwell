@@ -21,10 +21,10 @@
         <div class="nav__left">
           <ul>
             <li>
-              <a href="{{ url_for('main.index_page') }}">
-                Simple Blog <i class="fas fa-blog"></i>
-              </a>
-            </li>
+            <a href="{{ url_for('main.index_page') }}">
+              INKWELL <i class="fas fa-book"></i>
+            </a>
+          </li>
           </ul>
         </div>
 
@@ -46,7 +46,7 @@
     <!-- FEEDBACK -->
     <div class="feedback feedback--error">
       <i class="fas fa-exclamation-circle"></i>
-      <span class="feeback-span">efeafaw</span>
+      <span class="feeback-span"></span>
     </div>
 
     <!-- main container -->
@@ -68,7 +68,23 @@
               required
             />
           </div>
+
+          <!-- Forgot Password Link -->
+          <div class="forgot-password">
+            <a href="{{ url_for('users.send_email_link') }}"
+              >Forgot Password?</a
+            >
+          </div>
+
           <button type="submit" class="login-button">Login</button>
+
+          <!-- Sign Up Button -->
+          <div class="signup-link">
+            <span>Don't have an account?</span>
+            <a href="{{ url_for('users.register_page') }}" class="signup-button"
+              >Sign up</a
+            >
+          </div>
         </form>
       </div>
     </section>

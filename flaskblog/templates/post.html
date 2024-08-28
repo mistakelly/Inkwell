@@ -23,24 +23,26 @@
         <ul class="nav__left">
           <li>
             <a href="{{ url_for('main.index_page') }}">
-              Simple Blog <i class="fas fa-blog"></i>
+              INKWELL <i class="fas fa-book"></i>
             </a>
           </li>
         </ul>
 
         <ul class="nav__right">
           <button class="publish" type="submit">Publish</button>
-          <li>
-            <a href="{{ url_for('users.account_page') }}">
-              <i class="fas fa-user"></i> Account
-            </a>
-          </li>
+          <div class="user-action hide-dropdown">
+            <li>
+              <a href="{{ url_for('users.account_page') }}">
+                <i class="fas fa-user"></i> Account
+              </a>
+            </li>
 
-          <li>
-            <a href="{{ url_for('users.logout') }}">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
-          </li>
+            <li>
+              <a href="{{ url_for('users.logout') }}">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </li>
+          </div>
 
           <!-- hand burger -->
           <div class="mobile-handburger">
@@ -53,7 +55,6 @@
     <!-- MAIN SECTION -->
     <section class="post-container">
       <form action="/post/new" method="post" class="post-article" novalidate>
-
         <div class="form">
           <input
             type="text"
