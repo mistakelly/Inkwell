@@ -26,6 +26,7 @@ def register_page():
     
     #  check if request is Post
     if request.method == "POST":
+        print(f"Content-Type: {request.content_type}")
         # convert to dictionary
         data = request.get_json()
 
