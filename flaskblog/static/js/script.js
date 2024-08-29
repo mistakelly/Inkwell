@@ -111,7 +111,8 @@ if (mobileMenu) {
 
 window.addEventListener('click', (e) => {
     if (!e.target.classList.contains('fas'))
-        dropdown.classList.add('hide-dropdown')
+        if (dropdown)
+            dropdown.classList.add('hide-dropdown')
 })
 
 
