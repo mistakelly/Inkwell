@@ -74,21 +74,24 @@ def filter_posts():
     else:
         print('this is me in the else block')
         posts = Post.query.order_by(desc(Post.date_posted)).all()
-        posts_array = []
-        for post in posts:
-            print('post_title', post.title)
-            post_data = {
-                'title': post.title,
-                'content': post.content,
-                'created_at':post.date_posted.strftime('%d%b %Y').capitalize(),
-                'author': post.author.username,
-                'post_id': post.id,
-                'edit_url': url_for('posts.edit_post', post_id=post.id),
-                'delete_url': url_for('posts.delete_post', post_id=post.id)
-            }
-            posts_array.append(post_data)
+        if posts:
+            posts_array = []
+            for post in posts:
+                print('post_title', post.title)
+                post_data = {
+                    'title': post.title,
+                    'content': post.content,
+                    'created_at':post.date_posted.strftime('%d%b %Y').capitalize(),
+                    'author': post.author.username,
+                    'post_id': post.id,
+                    'edit_url': url_for('posts.edit_post', post_id=post.id),
+                    'delete_url': url_for('posts.delete_post', post_id=post.id)
+                }
+                posts_array.append(post_data)
 
-        return jsonify({'status': 'success', 'posts': posts_array}), 200
+            return jsonify({'status': 'success', 'posts': posts_array}), 200
+        else:
+            return jsonify({'status': 'error', 'message': 'No posts were found'}), 404
 
 
 @posts.route("/edit-post/<int:post_id>", methods=["GET", "PUT", "POST"])
@@ -109,11 +112,6 @@ def edit_post(post_id):
             return jsonify({'status': 'success', 'message': 'Your post was successfully updated', 'redirect_url': url_for('main.index_page')}), 200
         except Exception as e:
             return jsonify({'status': 'error', 'message': str(e)}), 500
-
-    if request.method == "POST":
-        print('Handling POST request')
-        post_title = request.get_json().get('postTitle').strip()
-        post_content = request.get_json().get('postContent').strip()
 
     return render_template("edit_post.html", post_id=post_id)
 
