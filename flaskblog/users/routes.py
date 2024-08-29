@@ -27,6 +27,13 @@ def register_page():
     #  check if request is Post
     if request.method == "POST":
         print(f"Content-Type: {request.content_type}")
+
+        print(f"Content-Type: {request.content_type}")
+        print(f"Request Data: {request.data}")
+
+        if request.content_type != 'application/json':
+            print(f"Content-Type: {request.content_type}")
+            return jsonify({'error': 'Unsupported Media Type'}), 415
         # convert to dictionary
         data = request.get_json()
 
