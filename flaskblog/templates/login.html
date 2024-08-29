@@ -21,10 +21,10 @@
         <div class="nav__left">
           <ul>
             <li>
-            <a href="{{ url_for('main.index_page') }}">
-              INKWELL <i class="fas fa-book"></i>
-            </a>
-          </li>
+              <a href="{{ url_for('main.index_page') }}">
+                INKWELL <i class="fas fa-book"></i>
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -93,9 +93,9 @@
     <!-- prettier-ignore -->
     <custom-footer></custom-footer>
 
-    <!-- <script src="{{ url_for('static', filename='../static/js/script.js') }}"></script> -->
-
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/Signin.js') }}"></script>
+    <script
+      src="{{ url_for('static', filename='js/script.js') }}"
+      type="module"
+    ></script>
   </body>
 </html>
