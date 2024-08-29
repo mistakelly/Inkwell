@@ -91,7 +91,7 @@ def filter_posts():
 
             return jsonify({'status': 'success', 'posts': posts_array}), 200
         else:
-            return jsonify({'status': 'error', 'message': 'No posts were found'}), 404
+            return jsonify({'status': 'error', 'message': 'No posts were found, Try creating a new post'}), 404
 
 
 @posts.route("/edit-post/<int:post_id>", methods=["GET", "PUT", "POST"])
