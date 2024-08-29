@@ -89,20 +89,19 @@ const initializePage = () => {
     }
   };
 
+
+  const PostNotFound = function (message) {
+    const postNotFound = document.createElement('h1');
+    postNotFound.textContent = message
+    postNotFound.classList.add('category-not-found');
+    postContainer.innerHTML = '';
+    postContainer.appendChild(postNotFound);
+  }
   // Function to render home posts
   // Function to render home posts
   const renderHomePosts = () => {
     fetch(`/filter_posts`)
-      .then((response) => {
-        if (!response.ok) {
-          // Handle non-200 responses
-          return response.json().then((data) => {
-            console.log(`Error ${response.status}: ${data.message}`);
-            // You might want to show an error message in the UI
-          });
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         if (data && data.posts) {
           const all_posts = data.posts;
@@ -110,38 +109,41 @@ const initializePage = () => {
           all_posts.forEach((post) => {
             const isOwner = post.author === username;
             innerhtml += `
-                      <main class="home-main">
-                        <div class="home-main-div">
-                          <h4>${post.author}</h4>
-                          <p>${post.created_at}</p>
-                          <div class="new-post">
-                            <p>new</p>
-                          </div>
-                        </div>
-                        <div class="post-div">
-                          <h1 id="title">${post.title}</h1>
-                          <p id="content">${post.content}</p>
-                        </div>
-                        ${isOwner ? `
-                        <div class="cta" style="display: flex;">
-                          <a href="${post.edit_url}" class="edit-btn">
-                            <i class="fas fa-edit"></i> Update
-                          </a>
-                          <a data-post-id="${post.delete_url}" class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</a>
-                        </div>
-                        ` : ''}
-                      </main>`;
+            <main class="home-main">
+              <div class="home-main-div">
+                <h4>${post.author}</h4>
+                <p>${post.created_at}</p>
+                <div class="new-post">
+                  <p>new</p>
+                </div>
+              </div>
+              <div class="post-div">
+                <h1 id="title">${post.title}</h1>
+                <p id="content">${post.content}</p>
+              </div>
+              ${isOwner ? `
+                <div class="cta" style="display: flex;">
+                  <a href="${post.edit_url}" class="edit-btn">
+                    <i class="fas fa-edit"></i> Update
+                  </a>
+                  <a data-post-id="${post.delete_url}" class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</a>
+                </div>
+              ` : ''}
+            </main>`;
           });
-          if (postContainer) {
-            postContainer.innerHTML = innerhtml;
-          } else {
-            console.error("Post container is missing.");
-          }
-        }
-      })
-      .catch((err) => console.error("Failed to fetch posts:", err));
-  };
+          postContainer.innerHTML = innerhtml;
 
+          // Display a message if no posts are found
+        } else PostNotFound(data.message);
+
+        console.log(data);
+      })
+      .catch((err) => {
+        console.error('Failed to fetch posts:', err);
+        // Handle unexpected errors
+
+      });
+  };
 
   // REC// RECOMMENDATION
   categories.forEach((e) => {
@@ -149,17 +151,9 @@ const initializePage = () => {
       let category = e.textContent;
 
       fetch(`/filter_posts?category=${encodeURIComponent(category)}`)
-        .then((response) => {
-          // Check if the response status is OK (status code 200)
-          if (response.ok) {
-            return response.json(); // Parse the response body as JSON
-          } else {
-            // Handle non-200 responses
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-        })
+        .then((response) => response.json())
         .then((data) => {
-          if (data.posts) {
+          if (data.posts && data.posts.length > 0) {
             const all_posts = data.posts;
             let innerhtml = '';
 
@@ -179,44 +173,36 @@ const initializePage = () => {
                   <p id="content">${post.content}</p>
                 </div>
                 ${isOwner ? `
-                <div class="cta" style="display: flex;">
-                  <a href="${post.edit_url}" class="edit-btn">
-                    <i class="fas fa-edit"></i> Update
-                  </a>
-                  <a data-post-id="${post.delete_url}" class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</a>
-                </div>
+                  <div class="cta" style="display: flex;">
+                    <a href="${post.edit_url}" class="edit-btn">
+                      <i class="fas fa-edit"></i> Update
+                    </a>
+                    <a data-post-id="${post.delete_url}" class="delete-btn"><i class="fas fa-trash-alt"></i> Delete</a>
+                  </div>
                 ` : ''}
               </main>`;
             });
 
-            if (postContainer) {
-              postContainer.innerHTML = innerhtml;
-            } else {
-              console.error("Post container is missing.");
-            }
-          } else {
-            const categoryNotFound = document.createElement('h1');
-            categoryNotFound.textContent = data.message;
-            categoryNotFound.classList.add('category-not-found');
 
-            if (postContainer) {
-              postContainer.innerHTML = '';  // Clear any existing content
-              postContainer.appendChild(categoryNotFound);  // Append the new element
-            }
+            postContainer.innerHTML = innerhtml;
+
+
+          } else {
+
+            // Display a message if no posts are found
+            PostNotFound(data.message);
+
           }
         })
         .catch((err) => {
-          console.error('Fetch error:', err);
-
-          // Handle unexpected errors
-          if (postContainer) {
-            postContainer.innerHTML = '<h1>An error occurred while fetching posts. Please try again later.</h1>';
-            postContainer.classList.add('category-not-found');
-
-          }
+          console.error('Failed to fetch posts:', err);
         });
     });
+
   });
+
+
+
 
 
   // FUNCTION CALLS
