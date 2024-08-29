@@ -65,7 +65,7 @@
 
 // i wanna import signup.js
 import './signup.js'
-
+import './signin.js'
 
 class Footer extends HTMLElement {
     connectedCallback() {

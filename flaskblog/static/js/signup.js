@@ -145,6 +145,7 @@ const registerUser = function (e) {
 };
 // Function calls
 //check for tag availablity before attaching eventlistners to avoid attaching event listners on null datatype.
+console.log('signup.js')
 if (form) form.addEventListener("submit", registerUser);
 // Call the validation functions to set up the input event listeners
 if (emailInput) emailInput.addEventListener("input", validateEmail);
