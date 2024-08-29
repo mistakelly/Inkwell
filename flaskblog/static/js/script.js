@@ -63,6 +63,8 @@
 // deletePost();
 // cancelModal();
 
+// i wanna import signup.js
+import './signup.js'
 
 
 class Footer extends HTMLElement {
