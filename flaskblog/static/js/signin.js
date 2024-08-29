@@ -56,8 +56,6 @@ const initializeForm = () => {
         })
         .catch((error) => console.log(error));
     });
-  } else {
-    console.error("One or more required elements are missing. Check if IDs and classes are correctly set.");
   }
 };
 

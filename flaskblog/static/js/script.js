@@ -58,14 +58,17 @@
 
 // }
 
-// // Function call
-// cancelFlashMessage();
-// deletePost();
-// cancelModal();
 
+
+    // // Function call 
+        // cance l FlashMessage();   
+            // deletePost();   
+                // cancelModal();   
+                           
 // i wanna import signup.js
 import './signup.js'
 import './signin.js'
+import './home.js'
 
 class Footer extends HTMLElement {
     connectedCallback() {
