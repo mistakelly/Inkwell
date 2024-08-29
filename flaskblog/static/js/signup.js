@@ -107,6 +107,9 @@ const registerUser = function (e) {
       .then((response) => response.json())
       .then((result) => {
 
+        console.log(typeof(result))
+        console.log(result)
+
         // Hide the spinner
         body.classList.remove("modal-active");
         spinner.style.display = "none";
