@@ -1,7 +1,7 @@
 import os
 class Config:
     SECRET_KEY = os.environ.get('FLASKBLOG_SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = ('sqlite:///site.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('FLASKBLOG_DB')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # Mail config
     MAIL_SERVER = 'smtp.gmail.com'
@@ -11,18 +11,5 @@ class Config:
     MAIL_USERNAME = os.environ.get('EMAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
     UPLOAD_FOLDER = (os.environ.get('FLASKBLOG_PROFILE_PATH'))
-
-
-
-
-check = Config()
-print( check.SQLALCHEMY_DATABASE_URI)
-print(check.UPLOAD_FOLDER)
-print(check.MAIL_PASSWORD)
-print(check.MAIL_USERNAME)
-
- # SQLALCHEMY_DATABASE_URI = os.environ.get('FLASKBLOG_DB')
-    # SQLALCHEMY_DATABASE_URI = os.environ.get('POSTGRESS_DATABASE_URL')
-
 
 
